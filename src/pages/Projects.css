@@ -1,0 +1,135 @@
+/* Page */
+.projects-page {
+  padding: 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2c2c54, #1e1e2f);
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Title */
+.projects-page h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2c2c40;
+  color: white;
+  min-width: 180px;
+}
+
+.toolbar button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #6c5ce7;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== TABLE STYLE GRID ===== */
+
+/* Header Row */
+.project-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 3fr 1.5fr 1.5fr;
+  gap: 20px;
+  font-weight: bold;
+  padding: 12px 10px;
+  border-bottom: 2px solid #444;
+  margin-bottom: 10px;
+}
+
+/* Data Row */
+.project-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 3fr 1.5fr 1.5fr;
+  gap: 20px; /* 👈 SPACE BETWEEN COLUMNS */
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #333;
+  transition: 0.2s;
+}
+
+.project-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+/* Column Styling */
+.title {
+  font-weight: 600;
+}
+
+.tech {
+  color: #74b9ff;
+  font-size: 13px;
+}
+
+.desc {
+  color: #b2bec3;
+  font-size: 13px;
+}
+
+/* Status badges */
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-align: center;
+  width: fit-content;
+}
+
+.completed {
+  background: #28a745;
+}
+
+.in-progress {
+  background: #f0ad4e;
+}
+
+.pending {
+  background: #6c757d;
+}
+
+.rejected {
+  background: #dc3545;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.actions .edit {
+  background: #00b894;
+  color: white;
+}
+
+.actions .delete {
+  background: #d63031;
+  color: white;
+}
