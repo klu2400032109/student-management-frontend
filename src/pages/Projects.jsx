@@ -13,10 +13,9 @@ export default function Projects() {
     title: "",
     description: "",
     status: "Pending",
-    techStack: "",
+    technologies: "",
     githubUrl: "",
-    demoUrl: "",
-    mediaUrl: ""
+    liveUrl: "",
   });
 
   const loadProjects = async () => {
@@ -41,7 +40,7 @@ export default function Projects() {
       const matchesSearch =
         (project.title || "").toLowerCase().includes(search.toLowerCase()) ||
         (project.description || "").toLowerCase().includes(search.toLowerCase()) ||
-        (project.techStack || "").toLowerCase().includes(search.toLowerCase());
+        (project.technologies || "").toLowerCase().includes(search.toLowerCase());
 
       const matchesStatus =
         statusFilter === "All" || project.status === statusFilter;
@@ -56,10 +55,9 @@ export default function Projects() {
       title: project.title || "",
       description: project.description || "",
       status: project.status || "Pending",
-      techStack: project.techStack || "",
+      technologies: project.technologies || "",
       githubUrl: project.githubUrl || "",
-      demoUrl: project.demoUrl || "",
-      mediaUrl: project.mediaUrl || ""
+      liveUrl: project.liveUrl || "",
     });
   };
 
@@ -69,10 +67,9 @@ export default function Projects() {
       title: "",
       description: "",
       status: "Pending",
-      techStack: "",
+      technologies: "",
       githubUrl: "",
-      demoUrl: "",
-      mediaUrl: ""
+      liveUrl: "",
     });
   };
 
@@ -164,6 +161,8 @@ export default function Projects() {
               <th>Status</th>
               <th>Tech</th>
               <th>Description</th>
+              <th>GitHub</th>
+              <th>Live</th>
               <th>Created</th>
               <th>Actions</th>
             </tr>
@@ -172,11 +171,11 @@ export default function Projects() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="6">Loading projects...</td>
+                <td colSpan="8">Loading projects...</td>
               </tr>
             ) : filteredProjects.length === 0 ? (
               <tr>
-                <td colSpan="6">No projects found.</td>
+                <td colSpan="8">No projects found.</td>
               </tr>
             ) : (
               filteredProjects.map((project) => (
@@ -210,11 +209,11 @@ export default function Projects() {
                       <td>
                         <input
                           type="text"
-                          value={editForm.techStack}
+                          value={editForm.technologies}
                           onChange={(e) =>
                             setEditForm({
                               ...editForm,
-                              techStack: e.target.value
+                              technologies: e.target.value,
                             })
                           }
                         />
@@ -227,7 +226,33 @@ export default function Projects() {
                           onChange={(e) =>
                             setEditForm({
                               ...editForm,
-                              description: e.target.value
+                              description: e.target.value,
+                            })
+                          }
+                        />
+                      </td>
+
+                      <td>
+                        <input
+                          type="url"
+                          value={editForm.githubUrl}
+                          onChange={(e) =>
+                            setEditForm({
+                              ...editForm,
+                              githubUrl: e.target.value,
+                            })
+                          }
+                        />
+                      </td>
+
+                      <td>
+                        <input
+                          type="url"
+                          value={editForm.liveUrl}
+                          onChange={(e) =>
+                            setEditForm({
+                              ...editForm,
+                              liveUrl: e.target.value,
                             })
                           }
                         />
@@ -243,10 +268,7 @@ export default function Projects() {
                           >
                             Save
                           </button>
-                          <button
-                            className="cancel-btn"
-                            onClick={cancelEdit}
-                          >
+                          <button className="cancel-btn" onClick={cancelEdit}>
                             Cancel
                           </button>
                         </div>
@@ -255,9 +277,7 @@ export default function Projects() {
                   ) : (
                     <>
                       <td>
-                        <div className="project-title-cell">
-                          <strong>{project.title}</strong>
-                        </div>
+                        <strong>{project.title}</strong>
                       </td>
 
                       <td>
@@ -266,9 +286,29 @@ export default function Projects() {
                         </span>
                       </td>
 
-                      <td>{project.techStack || "N/A"}</td>
+                      <td>{project.technologies || "N/A"}</td>
 
                       <td>{project.description || "N/A"}</td>
+
+                      <td>
+                        {project.githubUrl ? (
+                          <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                            GitHub
+                          </a>
+                        ) : (
+                          "N/A"
+                        )}
+                      </td>
+
+                      <td>
+                        {project.liveUrl ? (
+                          <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                            Live
+                          </a>
+                        ) : (
+                          "N/A"
+                        )}
+                      </td>
 
                       <td>{formatDate(project.createdAt)}</td>
 
